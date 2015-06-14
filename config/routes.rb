@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+
+  get 'categories/show'
+
   get 'sessions/new'
 
  root                       'static_pages#home'
@@ -10,4 +14,6 @@ Rails.application.routes.draw do
  post   'login'          => 'sessions#create'
  delete 'logout'         => 'sessions#destroy'
  resources :users
+ resources :categories, only: [:index, :show] do
+ end
 end
