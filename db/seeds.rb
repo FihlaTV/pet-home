@@ -7,7 +7,8 @@ require 'faker'
      name:     Faker::Name.name,
      email:    Faker::Internet.email,
      password: Faker::Lorem.characters(10),
-     admin: true
+     activated: true,
+     activated_at: Time.zone.now
    )
    user.save!
  end
@@ -18,7 +19,10 @@ require 'faker'
  user.update_attributes!(
    name: 'user1',
    email: 'user1@example.com',
-   password: 'foobar'
+   password: 'foobar',
+   admin: true,
+   activated: true,
+   activated_at: Time.zone.now
  )
 
  puts "Seed finished"
