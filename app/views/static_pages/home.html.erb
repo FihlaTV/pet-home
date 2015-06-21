@@ -1,9 +1,27 @@
+<% if logged_in? %>
+  <div class="row">
+    <div class="tabbable tabs-left">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#rcposts" data-toggle="tab">Recent Posts</a></li>
+        <li><a href="#petsitters" data-toggle="tab">Pet Sitters</a></li>
+        <li><a href="#swanted" data-toggle="tab">Pets Sitters Wanted</a></li>
+        <li><a href="#adoption" data-toggle="tab">Adoption</a></li>
+        <li><a href="#other" data-toggle="tab">Other</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="rcposts">
+        </div>
+        <div class="tab-pane" id="petsitters">
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
 <div class="center jumbotron">
   <h1>Welcome to the Pets Home!</h1>
-
   <h2>
     Get help from other pet's lovers is fast and easy!
   </h2>
-
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
+<% end %>
