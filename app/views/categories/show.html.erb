@@ -1,2 +1,16 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h1><%= @category.name %></h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <% @posts.each do |post| %>
+       <div class="media">
+         <div class="media-body">
+           <h4 class="media-heading">
+             <%= link_to post.title, [@category,post] %>
+           </h4>
+         </div>
+       </div>
+    <% end %>
+  </div>
+</div>
+

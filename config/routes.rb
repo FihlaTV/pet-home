@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :categories, only: [:show] do
-    resources :posts, except: [:index], controller: 'topics/posts'
+    resources :posts, except: [:index], controller: 'categories/posts'
   end
   resources :posts, only: [:index]
 end
