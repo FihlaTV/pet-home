@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= full_title(yield(:title)) %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,6 +11,9 @@
 <body>
   <%= render 'layouts/header' %>
   <div class="container">
+    <% if logged_in? %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
     <% flash.each do |message_type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
