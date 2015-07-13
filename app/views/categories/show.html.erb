@@ -1,16 +1,19 @@
 <h1><%= @category.name %></h1>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-10">
     <% @posts.each do |post| %>
        <div class="media">
          <div class="media-body">
            <h4 class="media-heading">
-             <%= link_to post.title, [@category,post] %>
-           </h4>
+             <%= link_to post.title, [@category, post] %>
+           </h4> 
          </div>
        </div>
     <% end %>
+  </div>
+  <div class="col-md-2">
+    <%= link_to "New Post", new_category_post_path(@category), class: 'btn btn-success pull-right' %>
   </div>
 </div>
 

@@ -1,0 +1,13 @@
+<%= form_for [@category, @post] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Enter title" %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 12, class: 'form-control', placeholder: "Enter body" %>
+
+    <%= f.submit "Submit Post", class: 'btn btn-success btn-lg' %>
+  </div>
+<% end %>

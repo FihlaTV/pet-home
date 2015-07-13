@@ -1,16 +1,8 @@
 <ul class="nav nav-pills">
   <li class="<%= 'active' if current_page?(posts_path) %>">
             <%= link_to 'Recent Posts', posts_path %></li>
-  
-  <li class="<%= 'active' if current_page?(category_path(id: '1')) %>">
-            <%= link_to "Pet Sitters", category_path(id: '1') %></li>
-
-  <li class="<%= 'active' if current_page?(category_path(id: '2')) %>">
-            <%= link_to "Sitters Wanted", category_path(id: '2') %></li>
-
-  <li class="<%= 'active' if current_page?(category_path(id: '3')) %>">
-            <%= link_to "Adoption", category_path(id: '3') %></li> 
-            
-  <li class="<%= 'active' if current_page?(category_path(id: '4')) %>">
-            <%= link_to "Other", category_path(id: '4') %></li> 
+  <% Category.all.each do |category| %>
+  <li class="<%= 'active' if current_page?(category_path(id: category.slug)) %>">
+            <%= link_to category.name, category %></li>
+  <% end %>
 </ul>
