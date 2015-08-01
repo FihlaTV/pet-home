@@ -3,17 +3,17 @@ class Categories::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def show
-    @category = Category.frinedly.find(params[:category_id])
+    @category = Category.friendly.find(params[:category_id])
     @post = Post.find(params[:id])
   end
 
   def new
-    @category = Category.frinedly.find(params[:category_id])
+    @category = Category.friendly.find(params[:category_id])
     @post = @category.posts.new
   end
 
   def create
-    @category = Category.frinedly.find(params[:category_id])
+    @category = Category.friendly.find(params[:category_id])
     @post = current_user.posts.build(post_params)
     @post.category = @category
 
