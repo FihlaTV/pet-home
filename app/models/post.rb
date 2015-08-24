@@ -2,6 +2,10 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
+  has_one :location, dependent: :destroy
+
+  accepts_nested_attributes_for :location, allow_destroy: true
+
   scope :adoption, -> {joins(:category).where("categories.name = 'Adoption'")}
   scope :petsitters, -> {joins(:category).where("categories.name = 'Pet Sitters'")}
   scope :sitterswanted, -> {joins(:category).where("categories.name = 'Sitters Wanted'")}

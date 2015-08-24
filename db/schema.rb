@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711163730) do
+ActiveRecord::Schema.define(version: 20150822162818) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20150711163730) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "locations", force: :cascade do |t|
+    t.string   "street"
+    t.string   "city"
+    t.integer  "zipcode"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "locations", ["post_id"], name: "index_locations_on_post_id"
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -43,9 +54,11 @@ ActiveRecord::Schema.define(version: 20150711163730) do
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
     t.integer  "user_id"
+    t.integer  "location_id"
   end
 
   add_index "posts", ["category_id"], name: "index_posts_on_category_id"
+  add_index "posts", ["location_id"], name: "index_posts_on_location_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|

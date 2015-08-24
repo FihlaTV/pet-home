@@ -5,11 +5,13 @@ class Categories::PostsController < ApplicationController
   def show
     @category = Category.friendly.find(params[:category_id])
     @post = Post.find(params[:id])
+    @locations = @post.locations
   end
 
   def new
     @category = Category.friendly.find(params[:category_id])
     @post = @category.posts.new
+    @post.build_location
   end
 
   def create

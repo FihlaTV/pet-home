@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   get    'login'          => 'sessions#new'
   post   'login'          => 'sessions#create'
   delete 'logout'         => 'sessions#destroy'
+
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+
   resources :categories, only: [:show] do
     resources :posts, except: [:index], controller: 'categories/posts'
   end
-  resources :posts, only: [:index]
+
+  resources :posts, only: [:index] 
+
 end
