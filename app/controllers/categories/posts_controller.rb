@@ -5,7 +5,6 @@ class Categories::PostsController < ApplicationController
   def show
     @category = Category.friendly.find(params[:category_id])
     @post = Post.find(params[:id])
-    @locations = @post.locations
   end
 
   def new
@@ -18,6 +17,8 @@ class Categories::PostsController < ApplicationController
     @category = Category.friendly.find(params[:category_id])
     @post = current_user.posts.build(post_params)
     @post.category = @category
+    @location = @post.build_location(location_params)
+    @post.location = @location
 
     if @post.save
       flash[:success] = "You have succesfully created a new post."
@@ -46,5 +47,9 @@ class Categories::PostsController < ApplicationController
     def correct_user
       @post = current_user.posts.find_by(id: params[:id])
       redirect_to root_url if @post.nil?
+    end
+
+    def location_params
+      params[:post].require(:location_attributes).permit(:street, :city, :zipcode)
     end
 end
