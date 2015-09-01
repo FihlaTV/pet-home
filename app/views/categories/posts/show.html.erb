@@ -13,16 +13,20 @@
     </br>
     <% if current_user?(@post.user) %>
       <%= link_to "Edit", edit_category_post_path(@category, @post), class: 'btn btn-success' %>
+      <%= link_to "Delete", [@category, @post], class: 'btn btn-danger', method: :delete, data: { confirm: "Are you sure you want to delete #{@post.title}?"} %>
     <% end %>
   
   </div> 
   <div class="col-md-4">
-    <iframe width="230" height="230" frameborder="0" style="border:0"
+    <% if @post.location.present? %>
+      <iframe width="230" height="230" frameborder="0" style="border:0"
 src="https://www.google.com/maps/embed/v1/place?&key=<%= ENV['googlemap_api_key'] %>&q=<%= @post.location.zipcode %>&zoom=14"></iframe>
+    
  
-    <% unless @post.location.street.blank? %>
-      <p><%= "#{@post.location.street}, #{@post.location.city}, #{@post.location.zipcode}".html_safe %></p>
+      <% unless @post.location.street.blank? %>
+        <p><%= "#{@post.location.street}, #{@post.location.city}, #{@post.location.zipcode}".html_safe %></p>
+      <% end %>
     <% end %>
-  <div>
+  </div>
   
 </div>

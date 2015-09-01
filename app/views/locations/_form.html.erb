@@ -1,11 +1,14 @@
 <div class="form-group">
   <%= f.label :street %>
-  <%= f.text_field :street %>
+  <%= f.text_field :street, placeholder: "If you don't want to provide your address, just put 'NA' in this field" %>
 
   <%= f.label :city %>
   <%= f.text_field :city %>
 
   <%= f.label :zipcode%>
   <%= f.text_field :zipcode %>
+
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, 'remove' %>
  
 </div>

@@ -4,8 +4,9 @@ class Post < ActiveRecord::Base
 
   has_one :location, dependent: :destroy
 
-  accepts_nested_attributes_for :location, reject_if: proc { |a| a[:street].blank? },
+  accepts_nested_attributes_for :location, reject_if: lambda { |a| a['street'].blank? },
                                  allow_destroy: true
+
 
   default_scope { order('created_at DESC') }
 

@@ -9,7 +9,7 @@ class Categories::PostsController < ApplicationController
 
   def new
     @category = Category.friendly.find(params[:category_id])
-    @post = @category.posts.new
+    @post = Post.new
     @post.build_location
   end
 
@@ -17,8 +17,6 @@ class Categories::PostsController < ApplicationController
     @category = Category.friendly.find(params[:category_id])
     @post = current_user.posts.build(post_params)
     @post.category = @category
-    @location = @post.build_location(location_params)
-    @post.location = @location
 
     if @post.save
       flash[:success] = "You have succesfully created a new post."
@@ -30,18 +28,41 @@ class Categories::PostsController < ApplicationController
   end
 
   def edit
+    @category = Category.friendly.find(params[:category_id])
+    @post = Post.find(params[:id])
+    @post.build_location
   end
 
   def update
+    @category = Category.friendly.find(params[:category_id])
+    @post = Post.find(params[:id])
+      if @post.update_attributes(post_params)
+        flash[:success] = "Post was upated."
+        redirect_to [@category, @post]
+      else
+        flash[:error] = "There was an error saving a post, please try again."
+        render :new
+      end
   end
 
   def destroy
+    @category = Category.friendly.find(params[:category_id])
+    @post = Post.find(params[:id])
+    title = @post.title
+
+      if @post.destroy
+       flash[:success] = "\"#{title}\" was deleted successfully."
+       redirect_to @category
+     else
+       flash[:error] = "There was an error deleting the topic."
+       render :show
+     end
   end
 
   private 
 
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, location_attributes: [:id, :street, :city, :zipcode, :_destroy])
     end
 
     def correct_user
@@ -49,7 +70,4 @@ class Categories::PostsController < ApplicationController
       redirect_to root_url if @post.nil?
     end
 
-    def location_params
-      params[:post].require(:location_attributes).permit(:street, :city, :zipcode)
-    end
 end
