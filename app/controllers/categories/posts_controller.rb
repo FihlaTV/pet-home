@@ -10,7 +10,7 @@ class Categories::PostsController < ApplicationController
   def new
     @category = Category.friendly.find(params[:category_id])
     @post = Post.new
-    @post.build_location
+    @post.build_location 
   end
 
   def create
@@ -30,7 +30,7 @@ class Categories::PostsController < ApplicationController
   def edit
     @category = Category.friendly.find(params[:category_id])
     @post = Post.find(params[:id])
-    @post.build_location
+    @post.build_location if @post.location.blank?
   end
 
   def update

@@ -4,7 +4,8 @@ class Post < ActiveRecord::Base
 
   has_one :location, dependent: :destroy
 
-  accepts_nested_attributes_for :location, reject_if: lambda { |a| a['street'].blank? },
+  accepts_nested_attributes_for :location, 
+
                                  allow_destroy: true
 
 
@@ -14,6 +15,10 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
   validates :title, length: { minimum: 5}, presence: true
   validates :body, length: { minimum: 20 }, presence: true
+
+  def to_s
+    title
+  end
  
 
 end
