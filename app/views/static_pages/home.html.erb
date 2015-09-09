@@ -1,11 +1,50 @@
 <% if logged_in? %>
   <%= render :template => 'posts/index' %>
 <% else %>
-<div class="center jumbotron">
-  <h1>Welcome to the Pets Home!</h1>
-  <h2>
-    Get help from other pet's lovers is fast and easy!
-  </h2>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+<div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+    <div class="carousel-inner">
+      <div class="active item one">
+       
+        <%= image_tag "dogs_on_cart.JPG" %>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Welcome to the Pets Home!</h1>
+            <h2>
+              Get help from other pet's lovers is fast and easy!
+            </h2>
+            <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
+          </div>
+        </div>
+      
+      </div>
+      <div class="item two">
+       
+        <%= image_tag "lovers_and_dogs.JPG" %>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Welcome to the Pets Home!</h1>
+            <h2>
+              Get help from other pet's lovers is fast and easy!
+            </h2>
+            <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="item three">
+      
+        <%= image_tag "white_cat.JPG" %>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Welcome to the Pets Home!</h1>
+            <h2>
+              Get help from other pet's lovers is fast and easy!
+            </h2>
+            <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
 <% end %>

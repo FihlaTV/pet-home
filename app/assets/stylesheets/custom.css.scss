@@ -109,3 +109,8 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+img {
+  @extend .img-responsive;
+  margin: 0 auto;
+  }
