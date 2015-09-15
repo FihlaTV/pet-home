@@ -1,20 +1,23 @@
 class Categories::PostsController < ApplicationController
+  before_action :set_category
   before_action :logged_in_user
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def show
-    @category = Category.friendly.find(params[:category_id])
     @post = Post.find(params[:id])
   end
 
-  def new
-    @category = Category.friendly.find(params[:category_id])
+  def new    
     @post = Post.new
-    @post.build_location 
+    if current_user.locations.first
+      @post.location = current_user.locations.first
+    else
+      @post.build_location
+    end
+
   end
 
-  def create
-    @category = Category.friendly.find(params[:category_id])
+  def create   
     @post = current_user.posts.build(post_params)
     @post.category = @category
 
@@ -22,31 +25,35 @@ class Categories::PostsController < ApplicationController
       flash[:success] = "You have succesfully created a new post."
       redirect_to [@category, @post]
     else
-      flash[:error] = "Error occured. Please try again."
+      flash[:danger] = "Error occured. Please try again."
       render :new
     end
   end
 
-  def edit
-    @category = Category.friendly.find(params[:category_id])
+  def edit  
     @post = Post.find(params[:id])
-    @post.build_location if @post.location.blank?
+    if @post.location.blank?
+    
+      if current_user.locations.first
+        @post.location = current_user.locations.first 
+      else
+      @post.build_location
+      end
+    end
   end
 
-  def update
-    @category = Category.friendly.find(params[:category_id])
+  def update    
     @post = Post.find(params[:id])
       if @post.update_attributes(post_params)
         flash[:success] = "Post was upated."
         redirect_to [@category, @post]
       else
-        flash[:error] = "There was an error saving a post, please try again."
+        flash[:danger] = "There was an error saving a post, please try again."
         render :new
       end
   end
 
   def destroy
-    @category = Category.friendly.find(params[:category_id])
     @post = Post.find(params[:id])
     title = @post.title
 
@@ -54,12 +61,16 @@ class Categories::PostsController < ApplicationController
        flash[:success] = "\"#{title}\" was deleted successfully."
        redirect_to @category
      else
-       flash[:error] = "There was an error deleting the topic."
+       flash[:danger] = "There was an error deleting the topic."
        render :show
      end
   end
 
   private 
+
+    def set_category
+      @category = Category.friendly.find(params[:category_id])
+    end
 
     def post_params
       params.require(:post).permit(:title, :body, location_attributes: [:id, :street, :city, :zipcode, :_destroy])
