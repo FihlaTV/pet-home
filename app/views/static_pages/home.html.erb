@@ -1,50 +1,23 @@
 <% if logged_in? %>
   <%= render :template => 'posts/index' %>
 <% else %>
-<div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-
+  <div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+  <!-- Wrapper for slides -->
     <div class="carousel-inner">
-      <div class="active item one">
-       
-        <%= image_tag "dogs_on_cart.JPG" %>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Welcome to the Pet Home!</h1>
-            <h2>
-              Get help from other pet's lovers is fast and easy!
-            </h2>
-            <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
-          </div>
-        </div>
-      
+      <div class="item active">
+        <div class="slide1"></div>
       </div>
-      <div class="item two">
-       
-        <%= image_tag "lovers_and_dogs.JPG" %>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Welcome to the Pet Home!</h1>
-            <h2>
-              Get help from other pet's lovers is fast and easy!
-            </h2>
-            <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
-          </div>
-        </div>
-        
+      <div class="item">
+        <div class="slide2"></div>
       </div>
-      <div class="item three">
-      
-        <%= image_tag "white_cat.JPG" %>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Welcome to the Pet Home!</h1>
-            <h2>
-              Get help from other pet's lovers is fast and easy!
-            </h2>
-            <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %></p>
-          </div>
-        </div>
-        
+      <div class="item">
+        <div class="slide3"></div>
       </div>
+    </div><!-- .carousel-inner --> 
+    <div class="container carousel-overlay text-center">
+      <h1>Welcome to the Pet Home!</h1>
+      <h2>Get help from other pet's lovers is fast and easy!</h2>
+      <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-warning" %></p>
     </div>
+  </div><!-- .carousel --> 
 <% end %>

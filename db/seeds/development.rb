@@ -14,7 +14,7 @@ Category.create!([
     description: "Adoption posts go here."
   },
   {
-    name: "Other",
+    name: "Miscellaneous",
     description: "Posts belong to other categories."
   }
 ])

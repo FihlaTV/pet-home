@@ -15,6 +15,10 @@ body {
   padding-top: 60px;
 }
 
+#content {
+  padding-bottom:100px; /* Height of the footer element */
+}
+
 section {
   overflow: auto;
 }
@@ -42,6 +46,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color: $gray;
 }
 
 h2 {
@@ -56,6 +61,20 @@ h2 {
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+/* navbar */
+
+.nav-pills  {
+  font-size: 15px;
+  li.active  a,
+  li.active a:hover {
+    background-color: #f90;
+  }
+}
+
+.nav li a {
+  padding: 4px 8px 5px;
 }
 
 /* miscellaneous */
