@@ -65,6 +65,17 @@ p {
 
 /* navbar */
 
+.navbar {
+  position: absolute;
+  top: 0;
+  left:0;
+  right: 0;
+}
+
+.nav {
+  margin-top: 5px;
+}
+
 .nav-pills  {
   font-size: 15px;
   li.active  a,
