@@ -1,8 +1,14 @@
 <header class="navbar navbar-static-top">
-  <div class="container">
+  <div class="container-fluid">
    <%= link_to "Pet Home", root_path, id:'logo' %>
     <nav>
-
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <%= form_tag search_posts_path, method: :get, class: "navbar-form navbar-left" do %>
+        <p>
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: 'Search for..' %>
+          <%= submit_tag "Find", name: nil, class: "btn btn-default" %>
+        </p>
+      <% end %>
       <ul class="nav navbar-nav pull-right">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
@@ -39,6 +45,7 @@
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
       </ul>
+    </div>
     </nav>
   </div>   
 </header>

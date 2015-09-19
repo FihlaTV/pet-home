@@ -13,9 +13,11 @@
     <% if logged_in? %>
       <%= render 'layouts/navbar' %>
     <% end %>
-    <% flash.each do |message_type, message| %>
+    <div class="container">
+      <% flash.each do |message_type, message| %>
       <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
     <% end %>
+    </div>
     <div id="content">
       <%= yield %>
     <%= render 'layouts/footer' %>

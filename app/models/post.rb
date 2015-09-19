@@ -1,12 +1,15 @@
 class Post < ActiveRecord::Base
+  searchkick
   belongs_to :user
   belongs_to :category
 
   has_one :location, dependent: :destroy
 
   accepts_nested_attributes_for :location, 
-
+                                
                                  allow_destroy: true
+
+
 
 
   default_scope { order('created_at DESC') }

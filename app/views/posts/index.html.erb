@@ -4,6 +4,9 @@
     <% if logged_in? %>
       <h1>Recent Posts</h1>
       <p class="lead">Active posts in the past 10 days</p>
+      <%= will_paginate @posts %>
+      <%= render @posts %>
+      <%= will_paginate @posts %>
     <% else %>
       <h1>All Posts</h1>
 

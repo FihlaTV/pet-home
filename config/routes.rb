@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     resources :posts, except: [:index], controller: 'categories/posts'
   end
 
-  resources :posts, only: [:index] 
+  resources :posts, only: [:index] do
+    collection do
+      get 'search'
+    end
+  end
 
 end

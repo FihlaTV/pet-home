@@ -6,4 +6,9 @@ class PostsController < ApplicationController
       @posts = Post.all.paginate(page: params[:page])
     end
   end
+
+  def search
+    @posts = Post.search(params[:search])
+  end
+  
 end

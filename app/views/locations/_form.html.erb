@@ -1,14 +1,15 @@
 <div class="form-group">
-  <%= f.label :street %>
-  <%= f.text_field :street, placeholder: "If you don't want to provide your address, just put 'NA' in this field" %>
+  <%= f.label :street %> (optional)
+  <%= f.text_field :street, class: 'form-control',placeholder: "123 A Street" %>
 
   <%= f.label :city %>
-  <%= f.text_field :city %>
+  <%= f.text_field :city, class: 'form-control',placeholder: "San Francisco" %>
 
-  <%= f.label :zipcode%>
-  <%= f.text_field :zipcode %>
+  <%= f.label :zipcode %>
+  <%= f.text_field :zipcode, class: 'form-control',placeholder: "94000" %>
 
-  <%= f.check_box :_destroy %>
-  <%= f.label :_destroy, 'remove' %>
- 
+  <%= f.check_box :_destroy %> 
+  <%= f.label :_destroy, 'remove' %> (Simply remove it if you don't need it)
+  
+  <%= f.hidden_field :id %>
 </div>
