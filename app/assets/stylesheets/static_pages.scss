@@ -45,20 +45,35 @@ footer#page-footer {
   }
 }
 
-.slide1, .slide2, .slide3 {
+.slide1, .slide2, .slide3, slide4, slide5, slide6, slide7, slide8 {
   min-height: 600px; /* Must have a height or min-height set due to use of background images */
   background-size: cover;
   -moz-background-size: cover;
   background-position: center center;
 }
 .slide1 {
-  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/dogs_on_cart.png');
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/dogs_in_cart.png');
 }
 .slide2 {
-  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/lovers_and_dogs.png');
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/jimwin2dogs.png');
 }
 .slide3 {
-  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/white_cat.png');
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/yogulookup.png');
+}
+.slide4 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/paigouside.png');
+}
+.slide5 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/tiggerside.png');
+}
+.slide6 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/winflo2dogs.png');
+}
+.slide7{
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/yoguside.png');
+}
+.slide8 {
+  background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/tiggercloseup.png');
 }
 
 /* Carousel Overlay */

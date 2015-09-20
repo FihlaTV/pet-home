@@ -12,7 +12,7 @@ class Categories::PostsController < ApplicationController
     if current_user.locations.first
       @post.location = current_user.locations.first
     else
-      @post.build_location
+      @post.locations.build
     end
 
   end
@@ -32,12 +32,12 @@ class Categories::PostsController < ApplicationController
 
   def edit  
     @post = Post.find(params[:id])
-    if @post.location.blank?
+    if @post.locations.blank?
     
       if current_user.locations.first
         @post.location = current_user.locations.first 
       else
-      @post.build_location
+         @post.locations.build
       end
     end
   end

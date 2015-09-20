@@ -4,7 +4,6 @@ class CreateLocations < ActiveRecord::Migration
       t.string :street
       t.string :city
       t.integer :zipcode
-      t.references :post, index: true, foreign_key: true
 
       t.timestamps null: false
     end

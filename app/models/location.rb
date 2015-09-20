@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
   belongs_to :post
-  has_one :user, through: :post
+  belongs_to :user
 
   validates :street, format: { with: /\A[a-z0-9\s]+\z/i, allow_blank: true }           
   validates :city, presence: true
