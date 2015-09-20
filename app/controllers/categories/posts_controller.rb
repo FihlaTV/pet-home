@@ -10,7 +10,7 @@ class Categories::PostsController < ApplicationController
   def new    
     @post = Post.new
     if current_user.locations.first
-      @post.location = current_user.locations.first
+      @post.locations = current_user.locations.first
     else
       @post.locations.build
     end
@@ -18,6 +18,7 @@ class Categories::PostsController < ApplicationController
   end
 
   def create   
+
     @post = current_user.posts.build(post_params)
     @post.category = @category
 
@@ -58,12 +59,12 @@ class Categories::PostsController < ApplicationController
     title = @post.title
 
       if @post.destroy
-       flash[:success] = "\"#{title}\" was deleted successfully."
-       redirect_to @category
-     else
-       flash[:danger] = "There was an error deleting the topic."
-       render :show
-     end
+        flash[:success] = "\"#{title}\" was deleted successfully."
+        redirect_to @category
+      else
+        flash[:danger] = "There was an error deleting the topic."
+        render :show
+      end
   end
 
   private 
@@ -73,7 +74,7 @@ class Categories::PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, location_attributes: [:id, :street, :city, :zipcode, :_destroy])
+      params.require(:post).permit(:title, :body, location: [:id, :street, :city, :zipcode, :_destroy])
     end
 
     def correct_user

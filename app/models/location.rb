@@ -7,5 +7,9 @@ class Location < ActiveRecord::Base
   validates :zipcode, presence: true,
              format: { with: /\A\d{5}\z/i }
 
+  def full_address
+    [street, city, zipcode].join(", s")
+  end
+
   
 end

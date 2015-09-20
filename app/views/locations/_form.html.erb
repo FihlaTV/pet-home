@@ -1,4 +1,6 @@
 <div class="form-group">
+  <%= hidden_field_tag :user_id, current_user.id %>
+  
   <%= f.label :street %> (optional)
   <%= f.text_field :street, class: 'form-control',placeholder: "123 A Street" %>
 
@@ -10,6 +12,4 @@
 
   <%= f.check_box :_destroy %> 
   <%= f.label :_destroy, 'remove' %> (Simply remove it if you don't need it)
-  
-  <%= f.hidden_field :id %>
 </div>

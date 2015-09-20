@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  accepts_nested_attributes_for :locations, 
+                                reject_if: proc { |attributes| attributes['name'].blank? },
+                                allow_destroy: true
+                                
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
