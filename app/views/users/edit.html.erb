@@ -1,6 +1,6 @@
 <div class="container">
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+<h1>Update your setting</h1>
 
 <div class="row">
   <div class="col-md-4">
@@ -10,6 +10,15 @@
   <div class="col-md-8">
     <%= form_for(@user) do |f| %>
       <%= render 'fields', f: f %>
+
+      </br>
+      <strong>Your Primary Neighborhood location:</strong>
+ 
+      <div class="well">
+        <%= f.fields_for :location do |location| %>
+          <%= render 'locations/form', f: location %>
+        <% end %>
+      </div>
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
   </div>

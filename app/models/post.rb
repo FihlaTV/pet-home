@@ -3,11 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
-  has_many :locations, through: :user
-
-  accepts_nested_attributes_for :locations, 
-                                reject_if: proc { |attributes| attributes['name'].blank? },
-                                allow_destroy: true
+  belongs_to :post
 
 
   default_scope { order('created_at DESC') }

@@ -9,6 +9,7 @@ class Categories::PostsController < ApplicationController
 
   def new    
     @post = Post.new
+    @location = Location.new
     if current_user.locations.first
       @post.locations = current_user.locations.first
     else

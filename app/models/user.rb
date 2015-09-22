@@ -10,10 +10,11 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false}
   has_secure_password
+  
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   accepts_nested_attributes_for :locations, 
-                                reject_if: proc { |attributes| attributes['name'].blank? },
+                
                                 allow_destroy: true
                                 
   def User.digest(string)
