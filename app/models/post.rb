@@ -3,7 +3,10 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
-  belongs_to :post
+  belongs_to :location
+   accepts_nested_attributes_for :location,                 
+                                  allow_destroy: true
+
 
 
   default_scope { order('created_at DESC') }

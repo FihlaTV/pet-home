@@ -13,7 +13,7 @@
   <strong>Neighborhood location:</strong>
  
   <div class="well">
-    <%= f.fields_for :locations do |location| %>
+    <%= f.fields_for :location do |location| %>
       <%= render 'locations/form', f: location %>
     <% end %>
   </div>

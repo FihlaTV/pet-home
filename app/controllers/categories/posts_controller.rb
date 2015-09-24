@@ -9,12 +9,11 @@ class Categories::PostsController < ApplicationController
 
   def new    
     @post = Post.new
-    @location = Location.new
-    if current_user.locations.first
-      @post.locations = current_user.locations.first
-    else
-      @post.locations.build
-    end
+    # if current_user.locations.first
+    #   @post.locations = current_user.locations.first
+    # else
+      @post.build_location
+    # end
 
   end
 
@@ -34,13 +33,12 @@ class Categories::PostsController < ApplicationController
 
   def edit  
     @post = Post.find(params[:id])
-    if @post.locations.blank?
+    if @post.location.blank?
     
-      if current_user.locations.first
-        @post.location = current_user.locations.first 
-      else
-         @post.locations.build
-      end
+      # if current_user.locations.first
+      #   @post.location = current_user.locations.first 
+      # else
+         @post.build_location
     end
   end
 
@@ -75,7 +73,7 @@ class Categories::PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, location: [:id, :street, :city, :zipcode, :_destroy])
+      params.require(:post).permit(:title, :body, location_attributes: [:id, :street, :city, :zipcode, :state, :_destroy])
     end
 
     def correct_user

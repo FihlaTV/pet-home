@@ -11,14 +11,6 @@
     <%= form_for(@user) do |f| %>
       <%= render 'fields', f: f %>
 
-      </br>
-      <strong>Your Primary Neighborhood location:</strong>
- 
-      <div class="well">
-        <%= f.fields_for :location do |location| %>
-          <%= render 'locations/form', f: location %>
-        <% end %>
-      </div>
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
   </div>
