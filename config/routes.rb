@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :locations
 
-  resources :categories, only: [:show] do
+  resources :categories do
     resources :posts, except: [:index], controller: 'categories/posts'
   end
 

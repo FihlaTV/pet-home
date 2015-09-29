@@ -1,0 +1,15 @@
+<% provide(:title, 'Create a new category') %>
+<div class="container">
+  <div class="well">
+    <%= form_for @category do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    </div> 
+
+    </br> 
+      <%= f.submit "Edit category", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
