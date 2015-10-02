@@ -29,12 +29,18 @@
         <div class="slide8"></div>
       </div>
     </div><!-- .carousel-inner --> 
-    <a class="left carousel-control" href="#bg-fade-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    <a class="right carousel-control" href="#bg-fade-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></a>
+    <a class="left carousel-control" href="#bg-fade-carousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </a>
+    <a class="right carousel-control" href="#bg-fade-carousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    </a>
     <div class="container carousel-overlay text-center">
+      <div class="col-md-12">
       <h1>Welcome to the Pet Home!</h1>
       <h2>Get help from other pet's lovers is fast and easy!</h2>
       <p><%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-warning" %></p>
+      </div>
     </div>
   </div><!-- .carousel --> 
 <% end %>

@@ -16,7 +16,8 @@ body {
 }
 
 #content {
-  padding-bottom:100px; /* Height of the footer element */
+  min-height: calc(100vh - 120px);
+    /* 80px header + 40px footer = 120px  */
 }
 
 section {
