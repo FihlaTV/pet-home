@@ -1,10 +1,11 @@
 class Categories::PostsController < ApplicationController
   before_action :set_category
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def show
-    @post = Post.find(params[:id])
+   
   end
 
   def new    
@@ -32,18 +33,16 @@ class Categories::PostsController < ApplicationController
   end
 
   def edit  
-    @post = Post.find(params[:id])
     if @post.location.blank?
     
       # if current_user.locations.first
       #   @post.location = current_user.locations.first 
       # else
-         @post.build_location
+        @post.build_location
     end
   end
 
   def update    
-    @post = Post.find(params[:id])
       if @post.update_attributes(post_params)
         flash[:success] = "Post was upated."
         redirect_to [@category, @post]
@@ -54,7 +53,6 @@ class Categories::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     title = @post.title
 
       if @post.destroy
@@ -72,12 +70,16 @@ class Categories::PostsController < ApplicationController
       @category = Category.friendly.find(params[:category_id])
     end
 
+    def set_post
+      @post = Post.friendly.find(params[:id])
+    end
+
     def post_params
       params.require(:post).permit(:title, :body, location_attributes: [:id, :street, :city, :zipcode, :state, :_destroy])
     end
 
     def correct_user
-      @post = current_user.posts.find_by(id: params[:id])
+      @post = current_user.posts.find_by(slug: params[:id])
       redirect_to root_url if @post.nil?
     end
 
