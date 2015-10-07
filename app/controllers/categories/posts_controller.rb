@@ -1,10 +1,11 @@
 class Categories::PostsController < ApplicationController
   before_action :set_category
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def show
-    @post = Post.find(params[:id])
+    @postattachments = @post.postattachments
   end
 
   def new    
@@ -23,30 +24,42 @@ class Categories::PostsController < ApplicationController
     @post.category = @category
 
     if @post.save
+      if params[:pictures]
+        params[:pictures].each do |picture|
+          @post.postattachments.create(picture: picture)
+        end
+      end
+      
+      @postattachments = @post.postattachments
       flash[:success] = "You have succesfully created a new post."
-      redirect_to [@category, @post]
+      redirect_to edit_category_post_path(@category, @post)
     else
       flash[:danger] = "Error occured. Please try again."
       render :new
     end
   end
 
-  def edit  
-    @post = Post.find(params[:id])
+  def edit 
+    @postattachments = @post.postattachments
+    
     if @post.location.blank?
     
       # if current_user.locations.first
       #   @post.location = current_user.locations.first 
       # else
-         @post.build_location
+        @post.build_location
     end
   end
 
   def update    
-    @post = Post.find(params[:id])
       if @post.update_attributes(post_params)
+        if params[:pictures]
+        params[:pictures].each do |picture|
+          @post.postattachments.create(picture: picture)
+        end
+      end
         flash[:success] = "Post was upated."
-        redirect_to [@category, @post]
+      redirect_to edit_category_post_path(@category, @post)
       else
         flash[:danger] = "There was an error saving a post, please try again."
         render :new
@@ -54,7 +67,6 @@ class Categories::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     title = @post.title
 
       if @post.destroy
@@ -72,12 +84,16 @@ class Categories::PostsController < ApplicationController
       @category = Category.friendly.find(params[:category_id])
     end
 
+    def set_post
+      @post = Post.friendly.find(params[:id])
+    end
+
     def post_params
       params.require(:post).permit(:title, :body, location_attributes: [:id, :street, :city, :zipcode, :state, :_destroy])
     end
 
     def correct_user
-      @post = current_user.posts.find_by(id: params[:id])
+      @post = current_user.posts.find_by(slug: params[:id])
       redirect_to root_url if @post.nil?
     end
 

@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :title, use: :slugged
   searchkick
   belongs_to :user
   belongs_to :category
@@ -7,7 +9,7 @@ class Post < ActiveRecord::Base
    accepts_nested_attributes_for :location,                 
                                   allow_destroy: true
 
-
+  has_many :postattachments
 
   default_scope { order('created_at DESC') }
 

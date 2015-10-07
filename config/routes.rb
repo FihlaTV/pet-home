@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [:index] do
+    resources :postattachments
     collection do
       get 'search'
     end
