@@ -5,7 +5,7 @@ class Categories::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def show
-   
+    @postattachments = @post.postattachments
   end
 
   def new    
@@ -24,15 +24,25 @@ class Categories::PostsController < ApplicationController
     @post.category = @category
 
     if @post.save
+      if params[:pictures]
+        params[:pictures].each do |picture|
+          @post.postattachments.create(picture: picture)
+        end
+      end
+      
+      @postattachments = @post.postattachments
       flash[:success] = "You have succesfully created a new post."
-      redirect_to [@category, @post]
+      redirect_to edit_category_post_path(@category, @post)
     else
       flash[:danger] = "Error occured. Please try again."
       render :new
     end
   end
 
-  def edit  
+
+  def edit 
+    @postattachments = @post.postattachments
+
     if @post.location.blank?
     
       # if current_user.locations.first
@@ -44,8 +54,13 @@ class Categories::PostsController < ApplicationController
 
   def update    
       if @post.update_attributes(post_params)
+        if params[:pictures]
+        params[:pictures].each do |picture|
+          @post.postattachments.create(picture: picture)
+        end
+      end
         flash[:success] = "Post was upated."
-        redirect_to [@category, @post]
+      redirect_to edit_category_post_path(@category, @post)
       else
         flash[:danger] = "There was an error saving a post, please try again."
         render :new
