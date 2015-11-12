@@ -51,7 +51,7 @@ group :development, :test do
   gem 'spring'
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
-  gem 'minitest'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -59,7 +59,7 @@ group :development do
 end
 
 group :test do
-  gem "capybara", "2.1.0"
+  gem "capybara"
 end
 
 group :production do
