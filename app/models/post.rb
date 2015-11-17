@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
    accepts_nested_attributes_for :location,                 
                                   allow_destroy: true
 
-  has_many :postattachments
+  has_many :postattachments, dependent: :destroy
 
   default_scope { order('created_at DESC') }
 

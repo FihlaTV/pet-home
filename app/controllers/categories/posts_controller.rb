@@ -53,18 +53,18 @@ class Categories::PostsController < ApplicationController
   end
 
   def update    
-      if @post.update_attributes(post_params)
-        if params[:pictures]
+    if @post.update_attributes(post_params)
+      if params[:pictures]
         params[:pictures].each do |picture|
           @post.postattachments.create(picture: picture)
         end
       end
-        flash[:success] = "Post was upated."
+      flash[:success] = "Post was upated."
       redirect_to edit_category_post_path(@category, @post)
-      else
-        flash[:danger] = "There was an error saving a post, please try again."
-        render :new
-      end
+    else
+      flash[:danger] = "There was an error saving a post, please try again."
+      render :new
+    end
   end
 
   def destroy

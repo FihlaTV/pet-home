@@ -8,6 +8,9 @@
         </div>
         <div class="panel-body">
           <span class="pull-right">
+            <%= link_to [attachment.post, attachment], remote: :true, method: :delete, data: {confirm: "Are you sure?"} do %>
+              <i class="fa fa-times fa-lg"></i>
+            <% end %>
           </span>
         </div>
       </div>
