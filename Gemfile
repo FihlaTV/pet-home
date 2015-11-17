@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'searchkick'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
-gem 'fog-aws'
+gem 'fog', '1.26.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
