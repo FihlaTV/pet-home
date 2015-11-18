@@ -20,6 +20,13 @@ body {
     /* 80px header + 40px footer = 120px  */
 }
 
+.panel-default .panel-heading {
+  color: #565a5c;
+  background-color: #edefed;
+  font-size: 18px;
+  font-weight: 400;
+}
+
 section {
   overflow: auto;
 }
@@ -136,4 +143,5 @@ input {
 img {
   @extend .img-responsive;
   margin: 0 auto;
-  }
+}
+
