@@ -1,34 +1,83 @@
 <div class="container">
-<div class="row">
-  <h1>
-      <%= @post.title %>
-    </h1>
-  <div class="col-md-8">
-    
-    <small>
-      posted <%= time_ago_in_words(@post.created_at) %> ago by
-      <%= @post.user.name %>
-    </small>
-    <p><%= @post.body %></p>
-
-    </br>
-    <% if current_user?(@post.user) %>
-      <%= link_to "Edit", edit_category_post_path(@category, @post), class: 'btn btn-success' %>
-      <%= link_to "Delete", [@category, @post], class: 'btn btn-danger', method: :delete, data: { confirm: "Are you sure you want to delete #{@post.title}?"} %>
-    <% end %>
-  
-  </div> 
-  <div class="col-md-4">
-    <% if @post.location.present? %>
-      <iframe width="230" height="230" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/place?&key=<%= ENV['googlemap_api_key'] %>&q=<%= @post.location.zipcode %>&zoom=14"></iframe>
-    
- 
-      <% unless @post.location.street.blank? %>
-        <p><%= "#{@post.location.street}, #{@post.location.city}, #{@post.location.zipcode}".html_safe %></p>
-      <% end %>
-    <% end %>
+  <div class="row">
+    <h1><%= @post.title %></h1>
   </div>
-  
-</div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <%= image_tag @postattachments[0].picture.url(:large), class: "img-responsive pull-left" if @postattachments.length > 0 %>
+    </div> 
+
+    <div class="col-md-4">
+      <% if @post.location.present? %>
+        <iframe width="230" height="230" frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?&key=<%= ENV['googlemap_api_key'] %>&q=<%= @post.location.zipcode %>&zoom=14"></iframe>
+      
+   
+        <% unless @post.location.street.blank? %>
+          <p><%= "#{@post.location.street}, #{@post.location.city}, #{@post.location.zipcode}".html_safe %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p><%= @post.body %></p>
+
+      <br>
+      <small>
+        posted <%= time_ago_in_words(@post.created_at) %> ago by
+        <%= @post.user.name %>
+      </small>
+      </br>
+      <% if current_user?(@post.user) %>
+        <%= link_to "Edit", edit_category_post_path(@category, @post), class: 'btn btn-success' %>
+        <%= link_to "Delete", [@category, @post], class: 'btn btn-danger', method: :delete, data: { confirm: "Are you sure you want to delete #{@post.title}?"} %>
+      <% end %>
+    </div>
+  </div>
+
+  <br>
+  <hr>
+
+  <!-- Carousel -->
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          
+          <% if @postattachments %>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <% @postattachments.each do |postattchment| %>
+                <li data-target="#myCarousel" data-slide-to="<%= postattchment.id %>"></li>
+              <% end %> 
+            </ol>       
+          <% end %>     
+
+          <div class="carousel-inner" role="listbox">
+            <% if @postattachments %>        
+              <% @postattachments.each do |postattchment| %>
+                <div class="item <%= 'active' if postattchment.id == @postattachments[0].id %>">          
+                  <%= image_tag postattchment.picture.url(:large) %>
+                </div>
+              <% end %> 
+            <% end %>
+          </div>
+
+          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <br>
 </div>
