@@ -54,11 +54,11 @@ footer#page-footer {
 }
 
 .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8 {
-  min-height: 500px; /* Must have a height or min-height set due to use of background images */
+  min-height: 800px; /* Must have a height or min-height set due to use of background images */
   background-size: cover;
   -moz-background-size: cover;
   background-position: center center;
-  width: 100%
+  max-width: 100%
 }
 .slide1 {
   background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/dogs_in_cart.png');
