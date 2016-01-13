@@ -62,6 +62,25 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  def self.from_omniauth(auth)
+    user = User.where(email: auth.info.email).first
+
+    if user
+      return user
+    else
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.name = auth.info.name unless user.name != nil
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email unless user.email != nil
+        user.image = auth.info.image unless user.image != nil
+        user.activated = true
+        user.password = SecureRandom.urlsafe_base64 unless user.password != nil
+        user.save!
+      end
+    end
+  end
+
   private
 
     def downcase_email

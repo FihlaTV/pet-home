@@ -32,6 +32,9 @@ gem 'mini_magick'
 gem 'fog', '1.26.0'
 gem 'net-ssh'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

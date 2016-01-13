@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get    'login'          => 'sessions#new'
   post   'login'          => 'sessions#create'
   delete 'logout'         => 'sessions#destroy'
+  get    'auth/:provider/callback', to: 'sessions#facebook_oauth'
 
   resources :users
   resources :account_activations, only: [:edit]

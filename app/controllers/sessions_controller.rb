@@ -21,6 +21,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  def facebook_oauth
+    user = User.from_omniauth(request.env["omniauth.auth"])
+    log_in user
+    redirect_back_or user
+  end
+
   def destroy
     log_out if logged_in?
     redirect_to root_url
