@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row-space-2">
+    <div class="col-md-3 text-center">
+      <%= image_tag gravatar_url(@other), class: "img-circle avatar-medium" %><br>
+      <strong><%= @other.name %></strong><br>
+      <%= link_to "View Profile", @other, class: "btn btn-default wide" %>
+    </div>
+    <div class="col-md-9">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Conversation with <%= @other.name %>
+        </div>
+        <div class="panel-body">
+          
+            <%= form_for [@conversation, @conversation.messages.new] do |f| %>
+              <div class="form-group">
+                <%= f.text_area :content, class: 'form-control', id: 'new_message', placeholder: "Add a personal message" %>
+              </div>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+
+              <div class="action">
+                <%= f.submit "Send Message", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+
+        </div>
+      </div>
+
+      <div id="chat">
+        <%= render 'messages' %>
+      </div>
+    </div>
+  </div>
+</div>

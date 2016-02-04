@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row-space-1">
     <h1><%= @post.title %></h1>
   </div>
 
@@ -30,7 +30,7 @@
       <br>
       <small>
         posted <%= time_ago_in_words(@post.created_at) %> ago by
-        <%= @post.user.name %>
+        <%= link_to @post.user.name, @post.user %>
       </small>
       </br>
       <% if current_user?(@post.user) %>

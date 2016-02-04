@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :posts, except: [:index], controller: 'categories/posts'
   end
 
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
+
   resources :posts, only: [:index] do
     resources :postattachments
     collection do

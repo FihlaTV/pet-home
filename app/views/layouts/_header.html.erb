@@ -25,10 +25,15 @@
         <li><%= link_to "Help", help_path %></li>
 
         <% if logged_in? %>
+          <li>
+            <%= link_to conversations_path do %>
+              <i class="fa fa-envelope"></i> Messages
+            <% end %>
+          </li>
           <li><%= link_to "Users", users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <%= image_tag gravatar_url(current_user), class: "avatar-small" %>&nbsp;
+              <%= image_tag gravatar_url(current_user), class: "avatar-small" %>
               <%= current_user.name %> 
               <span class="caret"></span>
             </a>

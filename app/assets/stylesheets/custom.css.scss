@@ -27,6 +27,21 @@ body {
   font-weight: 400;
 }
 
+.row-space-1 {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.row-space-2 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.row-space-3 {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 section {
   overflow: auto;
 }
@@ -145,3 +160,11 @@ img {
   margin: 0 auto;
 }
 
+.conversation {
+  color: #7f7f7f;
+  padding: 10px;
+}
+
+.conversation.hover, .conversation.focus {
+  background-colo: #F4F4F5;
+}
