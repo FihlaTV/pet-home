@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row-space-2">
     <div class="col-md-3 text-center">
-      <%= image_tag gravatar_url(@other), class: "img-circle avatar-medium" %><br>
+      <div class="row">
+        <%= image_tag gravatar_url(@other), class: "img-circle avatar-large" %>
+      </div>
       <strong><%= @other.name %></strong><br>
       <%= link_to "View Profile", @other, class: "btn btn-default wide" %>
     </div>
@@ -13,9 +15,9 @@
         </div>
         <div class="panel-body">
           
-            <%= form_for [@conversation, @conversation.messages.new] do |f| %>
+            <%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
               <div class="form-group">
-                <%= f.text_area :content, class: 'form-control', id: 'new_message', placeholder: "Add a personal message" %>
+                <%= f.text_area :content, class: 'form-control', placeholder: "Add a personal message" %>
               </div>
               <%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -28,7 +30,7 @@
       </div>
 
       <div id="chat">
-        <%= render 'messages' %>
+        <%= render @messages, locals: {conversation: @conversation} %>
       </div>
     </div>
   </div>

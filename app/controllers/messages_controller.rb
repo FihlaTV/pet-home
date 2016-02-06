@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :logged_in_user
   before_action :set_conversation
+  before_action :correct_user, only: :destroy
 
   def index
     if current_user == @conversation.sender || current_user == @conversation.recipient
@@ -16,8 +17,16 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages.order("created_at DESC")
 
     if @message.save
-      redirect_to conversation_messages_path(@conversation)
+      respond_to do |format|
+        format.js
+      end
     end
+  end
+
+  def destroy
+    @message.destroy
+    flash[:success] = "Message deleted"
+    redirect_to conversation_messages_path
   end
 
   private
@@ -28,5 +37,10 @@ class MessagesController < ApplicationController
 
     def message_params
       params.require(:message).permit(:content, :user_id)
+    end
+
+    def correct_user
+      @message = @conversation.messages.find_by(id: params[:id])
+      redirect_to root_url if @message.nil?
     end
 end
