@@ -5,6 +5,6 @@ class Message < ActiveRecord::Base
   validates_presence_of :content, :conversation_id, :user_id
 
   def message_time
-    created_at.strftime("%D")
+    created_at.strftime("%m/%d/%y %I:%M%P %Z")
   end
 end

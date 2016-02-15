@@ -1,0 +1,18 @@
+<div class="media">
+  <div class="media-body">
+    <div class="col-md-1">
+      <%= image_tag gravatar_url(review.user), class: "img-circle avatar-medium" %>
+    </div>
+
+    <div class="col-md-11">
+    <small>
+      <%= review.user.name %> wrote <%= time_ago_in_words(review.created_at) %> ago
+      <% if user_is_authorized_for_review?(review) %>
+        | <%= link_to "Delete", [@post, review], method: :delete %>
+      <% end %>
+    </small>
+    <p><%= review.body %></p>
+    </div>
+    
+  </div>
+</div>

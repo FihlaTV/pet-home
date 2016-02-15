@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
                                   allow_destroy: true
 
   has_many :postattachments, dependent: :destroy
+  has_many :reviews
 
   default_scope { order('created_at DESC') }
 

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index] do
     resources :postattachments
+    resources :reviews, only: [:create, :destroy]
     collection do
       get 'search'
     end

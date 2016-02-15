@@ -33,6 +33,7 @@
         <%= link_to @post.user.name, @post.user %>
       </small>
       </br>
+
       <% if current_user?(@post.user) %>
         <%= link_to "Edit", edit_category_post_path(@category, @post), class: 'btn btn-success' %>
         <%= link_to "Delete", [@category, @post], class: 'btn btn-danger', method: :delete, data: { confirm: "Are you sure you want to delete #{@post.title}?"} %>
@@ -80,4 +81,31 @@
     </div>
 
     <br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Reviews (<%= @post.reviews.count %>)</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <% if @post.reviews.count == 0 %>
+        <div class="text-center"><h4>There is no review for this post yet</h4></div>
+      <% else %>
+        <%= render partial: 'reviews/review', collection: @post.reviews %>
+      <% end %>
+    </div>
+  
+
+    <hr>
+
+    <div class="row">
+      <% if current_user %>
+        <div class="col-md-1">
+          <%= image_tag gravatar_url(current_user), class: "img-circle avatar-medium" %>
+        </div>
+        <%= render 'reviews/form', review: Review.new, post: @post %>
+      <% end %>
+    </div>
+
 </div>
