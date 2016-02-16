@@ -1,4 +1,4 @@
-<div class="media">
+<%= content_tag :div, class: 'media', id: "review-#{review.id}" do %>
   <div class="media-body">
     <div class="col-md-1">
       <%= image_tag gravatar_url(review.user), class: "img-circle avatar-medium" %>
@@ -8,11 +8,11 @@
     <small>
       <%= review.user.name %> wrote <%= time_ago_in_words(review.created_at) %> ago
       <% if user_is_authorized_for_review?(review) %>
-        | <%= link_to "Delete", [@post, review], method: :delete %>
+        | <%= link_to "Delete", [review.post, review], method: :delete, remote: true %>
       <% end %>
     </small>
     <p><%= review.body %></p>
     </div>
     
   </div>
-</div>
+<% end %>

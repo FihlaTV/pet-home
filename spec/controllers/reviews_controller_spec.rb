@@ -11,14 +11,14 @@ RSpec.describe ReviewsController, type: :controller do
   context "guest" do
     describe "POST create" do
       it "redirects the user to the sign in view" do
-        post :create, post_id: my_post.id, review: {title: "New Comment", body: "New comment body"}
+        post :create, format: :js, post_id: my_post.id, review: {title: "New Comment", body: "New comment body"}
         expect(response).to redirect_to(login_path)
       end
     end
 
     describe "DELETE destroy" do
       it "redirects the user to the sign in view" do
-        delete :destroy, post_id: my_post.id, id: my_review.id
+        delete :destroy, format: :js, post_id: my_post.id, id: my_review.id
         expect(response).to redirect_to(login_path)
       end
     end
@@ -31,18 +31,18 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of reviews by 1" do
-        expect { post :create, post_id: my_post.id, review: {body: "New test review"} }.to change(Review, :count).by(1)
+        expect { post :create, format: :js, post_id: my_post.id, review: {body: "New test review"} }.to change(Review, :count).by(1)
       end
 
-      it "redirects to the post show view" do
-        post :create, post_id: my_post.id, review: {body: "New test review"}
-        expect(response).to redirect_to [my_category, my_post]
+      it "returns http success" do
+        post :create, format: :js, post_id: my_post.id, review: {body: "New test review"}
+        expect(response).to have_http_status(:success)
       end
     end
 
     describe "DELETE destroy" do
       it "redirects the user to the post show view" do
-        delete :destroy, post_id: my_post.id, id: my_review.id
+        delete :destroy, format: :js, post_id: my_post.id, id: my_review.id
         expect(response).to redirect_to [my_category, my_post]
       end
     end
@@ -55,25 +55,25 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of reviews by 1" do
-        expect { post :create, post_id: my_post.id, review: {body: "New member review"} }.to change(Review, :count).by(1)
+        expect { post :create, format: :js, post_id: my_post.id, review: {body: "New member review"} }.to change(Review, :count).by(1)
       end
 
-      it "redirects to the post show view" do
-        post :create, post_id: my_post.id, review: {body: "New member review"}
-        expect(response).to redirect_to [my_category, my_post]
+      it "returns http success" do
+        post :create, format: :js, post_id: my_post.id, review: {body: "New member review"}
+        expect(response).to have_http_status(:success)
       end
     end
 
     describe "DELETE destroy" do
       it "deletes the review" do
-        delete :destroy, post_id: my_post.id, id: my_review.id
+        delete :destroy, format: :js, post_id: my_post.id, id: my_review.id
         count = Review.where({id: my_review.id}).count
         expect(count).to eq(0)
       end
 
-      it "redirects the user to the post show view" do
-        delete :destroy, post_id: my_post.id, id: my_review.id
-        expect(response).to redirect_to [my_category, my_post]
+      it "returns http success" do
+        delete :destroy, format: :js, post_id: my_post.id, id: my_review.id
+        expect(response).to have_http_status(:success)
       end
     end
   end
@@ -86,25 +86,25 @@ RSpec.describe ReviewsController, type: :controller do
 
     describe "POST create" do
       it "increases the number of reviews by 1" do
-        expect { post :create, post_id: my_post.id, review: {body: "New member review"} }.to change(Review, :count).by(1)
+        expect { post :create, format: :js, post_id: my_post.id, review: {body: "New member review"} }.to change(Review, :count).by(1)
       end
 
-      it "redirects to the post show view" do
-        post :create, post_id: my_post.id, review: {body: "New member review"}
-        expect(response).to redirect_to [my_category, my_post]
+      it "returns http success" do
+        post :create, format: :js, post_id: my_post.id, review: {body: "New member review"}
+        expect(response).to have_http_status(:success)
       end
     end
 
     describe "DELETE destroy" do
       it "deletes the review" do
-        delete :destroy, post_id: my_post.id, id: my_review.id
+        delete :destroy, format: :js, post_id: my_post.id, id: my_review.id
         count = Review.where({id: my_review.id}).count
         expect(count).to eq(0)
       end
 
       it "redirects the user to the post show view" do
-        delete :destroy, post_id: my_post.id, id: my_review.id
-        expect(response).to redirect_to [my_category, my_post]
+        delete :destroy, format: :js, post_id: my_post.id, id: my_review.id
+        expect(response).to have_http_status(:success)
       end
     end
   end

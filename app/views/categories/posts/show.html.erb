@@ -92,7 +92,9 @@
       <% if @post.reviews.count == 0 %>
         <div class="text-center"><h4>There is no review for this post yet</h4></div>
       <% else %>
-        <%= render partial: 'reviews/review', collection: @post.reviews %>
+        <div class='js-reviews'>
+          <%= render partial: 'reviews/review', collection: @post.reviews %>
+        </div>
       <% end %>
     </div>
   
@@ -104,7 +106,9 @@
         <div class="col-md-1">
           <%= image_tag gravatar_url(current_user), class: "img-circle avatar-medium" %>
         </div>
-        <%= render 'reviews/form', review: Review.new, post: @post %>
+        <div class='new-review'>
+          <%= render 'reviews/form', review: Review.new, post: @post %>
+        </div>
       <% end %>
     </div>
 

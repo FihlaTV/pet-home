@@ -1,0 +1,5 @@
+<% if @review.destroyed? %>
+  $('#review-' +<%= @review.id %>).hide();
+<% else %>
+  $('#review-' +<%= @review.id %>).prepend("<div class='alert alert-danger'><%= flash.now[:danger] %></div>");
+<% end %>

@@ -6,13 +6,17 @@ class ReviewsController < ApplicationController
     @post = Post.friendly.find(params[:post_id])
     @review = @post.reviews.build(review_params)
     @review.user = current_user
+    @new_review = Review.new
 
     if @review.save
       flash[:success] = "Your review was added."
-      redirect_to [@post.category, @post]
     else
       flash[:danger] = "Review failed to save."
-      redirect_to [@post.category, @post]
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -22,10 +26,13 @@ class ReviewsController < ApplicationController
 
     if @review.destroy
       flash[:success] = "Review was removed."
-      redirect_to [@post.category, @post]
     else
       flash[:danger] = "Review can't be deleted this time, please try again."
-      redirect_to [@post.category, @post]
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

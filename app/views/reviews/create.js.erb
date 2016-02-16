@@ -1,0 +1,6 @@
+<% if @review.valid? %>
+  $('.js-reviews').prepend("<%= escape_javascript(render(@review)) %>");
+  $('.new-review').html("<%= escape_javascript(render partial: 'reviews/form', locals: { post: @post, review: @new_review }) %>");
+<% else %>
+  $('.new-review').html("<%= escape_javascript(render partial: 'reviews/form', locals: { post: @post, review: @review }) %>");
+<% end %>
