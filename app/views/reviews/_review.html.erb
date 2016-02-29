@@ -1,3 +1,5 @@
+<% show_post ||= false %> <!-- To turn on condition to display on different pages -->
+
 <%= content_tag :div, class: 'media', id: "review-#{review.id}" do %>
   <div class="media-body">
     <div class="col-md-1">
@@ -12,6 +14,9 @@
       <% end %>
     </small>
     <p><%= review.body %></p>
+      <% if show_post %> <!-- Only user show pag instead of post show page -->
+        on <%= link_to review.post.title, [review.post.category, review.post] %>
+      <% end %>
     </div>
     
   </div>

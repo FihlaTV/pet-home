@@ -6,12 +6,13 @@ class ReviewsController < ApplicationController
     @post = Post.friendly.find(params[:post_id])
     @review = @post.reviews.build(review_params)
     @review.user = current_user
+    # clear the unobtrusive form when create
     @new_review = Review.new
 
     if @review.save
-      flash[:success] = "Your review was added."
+      flash.now[:success] = "Your review was added."
     else
-      flash[:danger] = "Review failed to save."
+      flash.now[:danger] = "Review failed to save."
     end
 
     respond_to do |format|
@@ -25,9 +26,9 @@ class ReviewsController < ApplicationController
     @review = @post.reviews.find(params[:id])
 
     if @review.destroy
-      flash[:success] = "Review was removed."
+      flash.now[:success] = "Review was removed."
     else
-      flash[:danger] = "Review can't be deleted this time, please try again."
+      flash.now[:danger] = "Review can't be deleted this time, please try again."
     end
 
     respond_to do |format|

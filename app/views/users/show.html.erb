@@ -23,4 +23,29 @@
       </div>
     </div>
   </div>
+
+  <div class = "row-space-3">
+    <small>
+      <%= pluralize(@user.posts.count, 'post') %>
+      <div class="js-userreviews-count"><%= pluralize(@user.reviews.count, 'review') %></div>
+    </small>
+
+    <div class="tabbable tabs-left">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#posts" data-toggle="tab">Posts</a></li>
+        <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
+      </ul>
+      <div class="tab-content">
+        <br>
+        <div class="tab-pane active" id="posts">
+          <%= render @posts %>
+        </div>
+        <div class="tab-pane" id="reviews">
+          <% @user.reviews.each do |review| %>
+            <%= render 'reviews/review', review: review, show_post: true %>
+          <% end %>
+        </div>
+      </div>
+  </div>
+  </div>
 </div>

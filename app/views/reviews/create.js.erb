@@ -1,5 +1,6 @@
 <% if @review.valid? %>
   $('.js-reviews').prepend("<%= escape_javascript(render(@review)) %>");
+  $('.js-reviews-count').html("<h3>Reviews (<%= @post.reviews.count %>)</h3>");
   $('.new-review').html("<%= escape_javascript(render partial: 'reviews/form', locals: { post: @post, review: @new_review }) %>");
 <% else %>
   $('.new-review').html("<%= escape_javascript(render partial: 'reviews/form', locals: { post: @post, review: @review }) %>");

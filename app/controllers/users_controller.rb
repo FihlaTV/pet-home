@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
+    @posts = @user.posts
+    @reviews = @user.reviews
   end
 
   def new
@@ -50,7 +52,7 @@ class UsersController < ApplicationController
   private 
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmtaion)
+      params.require(:user).permit(:name, :email, :password, :password_confirmtaion, :description, :phone_number)
     end
 
     def correct_user

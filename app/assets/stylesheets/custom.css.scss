@@ -126,8 +126,12 @@ p {
 
 /* navbar */
 
+.navbar-default {
+  background: #fff;
+  border: none;
+}
+
 .navbar {
-  position: absolute;
   top: 0;
   left:0;
   right: 0;
@@ -154,6 +158,10 @@ p {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+#flash_message {
+  margin-top: 5px;
 }
 
 /* forms */

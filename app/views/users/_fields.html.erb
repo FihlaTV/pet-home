@@ -1,14 +1,24 @@
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :name %>
-<%= f.text_field :name, class: "form-control" %>
+<div class="form-group">
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
 
-<%= f.label :email %>
-<%= f.email_field :email, class: "form-control" %>
+  <%= f.label :email %>
+  <%= f.email_field :email, class: "form-control" %>
 
-<%= f.label :password %>
-<em>(6 characters minimum)</em>
-<%= f.password_field :password, class: "form-control" %>
+  <%= f.label :password %>
+  <em>(6 characters minimum)</em>
+  <%= f.password_field :password, class: "form-control" %>
 
-<%= f.label :password_confirmation, "Password Confirmation" %>
-<%= f.password_field :password_confirmation, class: "form-control" %>
+  <%= f.label :password_confirmation, "Password Confirmation" %>
+  <%= f.password_field :password_confirmation, class: "form-control" %>
+
+  <% if logged_in? %>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, class: "form-control", placeholder: "Phone Number" %>
+
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5, cols: 25, class: "form-control", placeholder: "Tell us about yourself" %>
+  <% end %>
+</div>

@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.search(params[:search])
+    @posts = Post.search(params[:search], page: params[:page], per_page: 20)
   end
   
 end
