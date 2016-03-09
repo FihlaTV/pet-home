@@ -10,8 +10,10 @@
 
     <div class="col-md-4">
       <% if @post.location.present? %>
+        <% if @post.location.zipcode.present? %>
         <iframe width="330" height="330" frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?&key=<%= ENV['googlemap_api_key'] %>&q=<%= @post.location.zipcode %>&zoom=14"></iframe>
+        <% end %>
          
         <% unless @post.location.street.blank? %>
           <p><%= "#{@post.location.street}, #{@post.location.city}, #{@post.location.zipcode}".html_safe %></p>

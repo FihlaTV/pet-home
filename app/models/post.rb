@@ -6,9 +6,8 @@ class Post < ActiveRecord::Base
   belongs_to :category
 
   belongs_to :location
-   accepts_nested_attributes_for :location,                 
-                                  allow_destroy: true
-
+  accepts_nested_attributes_for :location, allow_destroy: true              
+                                  
   has_many :postattachments, dependent: :destroy
   has_many :reviews
 
