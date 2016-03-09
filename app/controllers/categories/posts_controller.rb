@@ -2,7 +2,7 @@ class Categories::PostsController < ApplicationController
   before_action :set_category
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
   
   def show
     @postattachments = @post.postattachments
@@ -93,9 +93,11 @@ class Categories::PostsController < ApplicationController
       params.require(:post).permit(:title, :body, location_attributes: [:id, :street, :city, :zipcode, :state, :_destroy])
     end
 
-    def correct_user
-      @post = current_user.posts.find_by(slug: params[:id])
-      redirect_to root_url if @post.nil?
+    def authorize_user
+      unless (current_user.admin? || @post.user == current_user)
+        flash[:danger] = "You don't have permission to delete this post." 
+        redirect_to root_url 
+      end
     end
 
 end

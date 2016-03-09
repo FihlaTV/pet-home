@@ -5,11 +5,11 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
-  belongs_to :location
+  belongs_to :location, dependent: :destroy
   accepts_nested_attributes_for :location, allow_destroy: true              
                                   
   has_many :postattachments, dependent: :destroy
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   default_scope { order('created_at DESC') }
 

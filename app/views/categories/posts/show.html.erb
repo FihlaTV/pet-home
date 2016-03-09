@@ -35,7 +35,7 @@
       </small>
       </br>
 
-      <% if current_user?(@post.user) %>
+      <% if user_is_authorized_for_post?(@post) %>
         <%= link_to "Edit", edit_category_post_path(@category, @post), class: 'btn btn-success' %>
         <%= link_to "Delete", [@category, @post], class: 'btn btn-danger', method: :delete, data: { confirm: "Are you sure you want to delete #{@post.title}?"} %>
       <% end %>

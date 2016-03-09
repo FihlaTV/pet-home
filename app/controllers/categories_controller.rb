@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
     name = @category.name
 
     if @category.destroy
-      flash[:notice] = "\"#{name}\" was deleted successfully."
+      flash[:success] = "\"#{name}\" was deleted successfully."
       redirect_to root_url
     else
       flash[:error] = "There was an error deleting the category."
