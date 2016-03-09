@@ -14,11 +14,18 @@
 /* laptops */
 @media (max-width: 1300px) and (min-width: 992px) {
   .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8 {
-  height: auto; /* Must have a height or min-height set due to use of background images */
+  height: 500px; /* Must have a height or min-height set due to use of background images */
   background-size: cover;
   -moz-background-size: cover;
   background-position: center center;
   max-width: 100%;
+  }
+  .carousel-overlay {
+    color: white;
+    position: absolute;
+    top: 40%;
+    left: 50px;
+    right: 50px;
   }
 }
 
