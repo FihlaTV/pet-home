@@ -3,9 +3,12 @@
   <div class="well">
     <%= form_for @category do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-    <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 2, class: 'form-control' %>
     </div> 
 
     </br> 
