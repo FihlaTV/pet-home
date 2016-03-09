@@ -1,0 +1,83 @@
+/* media queries */
+
+/* desktops */
+@media (min-width: 1301px) {
+  .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8 {
+  min-height: 800px; /* Must have a height or min-height set due to use of background images */
+  background-size: cover;
+  -moz-background-size: cover;
+  background-position: center center;
+  max-width: 100%;
+  }
+}
+
+/* laptops */
+@media (max-width: 1300px) and (min-width: 992px) {
+  .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8 {
+  height: auto; /* Must have a height or min-height set due to use of background images */
+  background-size: cover;
+  -moz-background-size: cover;
+  background-position: center center;
+  max-width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .navbar-header {
+      float: none;
+  }
+  .navbar-toggle {
+      display: block;
+  }
+  .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-collapse.collapse {
+      display: none!important;
+  }
+  .navbar-nav {
+      float: none!important;
+      margin: 7.5px -15px;
+  }
+  .navbar-nav>li {
+      float: none;
+  }
+  .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .navbar-text {
+      float: none;
+      margin: 15px 0;
+  }
+  /* since 3.1.0 */
+  .navbar-collapse.collapse.in { 
+      display: block!important;
+  }
+  .collapsing {
+      overflow: hidden!important;
+  }
+
+  .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8 {
+    min-height: 500px; /* Must have a height or min-height set due to use of background images */
+    background-size: cover;
+    -moz-background-size: cover;
+    background-position: center center;
+    max-width: 100%
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8 {
+    height: auto;
+  }
+  .carousel-overlay {
+    top: 20%;
+  }
+  .carousel-overlay .btn-lg {
+    font-size: 1em;
+    padding: 5px 15px;
+  }
+}

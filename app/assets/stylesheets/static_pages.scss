@@ -51,17 +51,12 @@ footer#page-footer {
   }
 }
 
+/* Carousel */
+
 #bg-fade-carousel {
   height: 100%;
 }
 
-.slide1, .slide2, .slide3, .slide4, .slide5, .slide6, .slide7, .slide8 {
-  min-height: 800px; /* Must have a height or min-height set due to use of background images */
-  background-size: cover;
-  -moz-background-size: cover;
-  background-position: center center;
-  max-width: 100%
-}
 .slide1 {
   background-image: url('https://s3-us-west-2.amazonaws.com/petshome-ca/background/dogs_in_cart.png');
 }
@@ -105,12 +100,12 @@ footer#page-footer {
 }
 .carousel-overlay .btn {
   border-top: none;
-    border-left: none;
-    border-right: none;
+  border-left: none;
+  border-right: none;
 }
 .carousel-overlay .btn-lg {
-    font-size: 1em;
-    padding: 10px 30px;
+  font-size: 1em;
+  padding: 10px 30px;
 }
 .circles {
   margin-top: 20px;
