@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  has_many :posts
+  has_many :posts, dependent: :nullify
   belongs_to :user
 
   validates :street, format: { with: /\A[a-z0-9\s]+\z/i, allow_blank: true }           

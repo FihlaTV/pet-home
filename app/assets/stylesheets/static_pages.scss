@@ -54,7 +54,7 @@ footer#page-footer {
 /* Carousel */
 
 #bg-fade-carousel {
-  height: 100%;
+  height: calc(100vh-120px);
 }
 
 .slide1 {
